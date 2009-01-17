@@ -13,9 +13,8 @@ the leap seconds announced at library release time. This version
 will become invalidated when/if the International Earth Rotation
 and Reference Systems Service (IERS) announces a new leap second at
 <http://hpiers.obspm.fr/eoppc/bul/bulc/bulletinc.dat>.
-At that time a new version of the library will be released and
-any code wishing to remain up to date should recompile against
-that version.
+At that time a new version of the library will be released, against
+which any code wishing to remain up to date should be recompiled.
 
 This module is intended to provide a quick-and-dirty leap second solution
 for one-off analyses concerned only with the past and present (i.e. up
