@@ -1,3 +1,5 @@
+-- This file was automatically generated.
+
 {- |
    Copyright  : Copyright (C) 2009 Bjorn Buckwalter
    License    : BSD3

@@ -1,6 +1,6 @@
-{-
+{- |
 Use this applicaton to generate the 'Data.Time.Clock.AnnouncedLeapSeconds'
-module. Compile and pipe a EOP file from Celestrak through the binary,
+module. Compile and pipe an EOP file from Celestrak through the binary,
 e.g.:
 
   curl http://www.celestrak.com/SpaceData/eop19620101.txt | ./MakeLeapSecondTable > Data/Time/Clock/AnnouncedLeapSeconds.hs
@@ -8,29 +8,32 @@ e.g.:
 -}
 
 import Astro.Celestrak
-
-import Data.List
-import Data.Time
-import Data.Time.Clock.TAI
-import Data.Time.Format
-import Safe
+import Data.List (intercalate)
+import Data.Time (Day)
+import Data.Time.Format (formatTime)
 import System.Locale (defaultTimeLocale)
 
 
 -- | Converts an 'EOPList' into a minimal list of (day, leapsecond) pairs
 -- in reverse chronological order.
 eopToLS :: EOPList a -> [(Day, Integer)]
-eopToLS = reverse . filterLS . fmap (fmap deltaAT)
+eopToLS = reverse . keepInitial . fmap (fmap deltaAT)
 
-filterLS :: Eq a => [(b,a)] -> [(b,a)]
-filterLS (x:xs) = x : filterLS (dropWhile ((== snd x) . snd) xs)
-filterLS [] = []
+-- | Keeps the first pair with a given snd value while dropping the
+-- following pairs with the same snd value.
+keepInitial :: Eq a => [(b,a)] -> [(b,a)]
+keepInitial (x:xs) = x : keepInitial (dropWhile (sndEq x) xs) where sndEq (_,x) (_,y) = x == y
+keepInitial [] = []
+
+{- 
+The above and this function are candidates for moving to "Astro.Celestrak":
 
 -- | Converts an 'EOPList' to a light weight 'LeapSecondTable' (its internal
 -- data is a short list as opposed to a huge array for the 'LeapSecondTable'
 -- provided by "Astro.Celestrak".
 eopToLST :: EOPList a -> LeapSecondTable
 eopToLST eops d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) $ eopToLS eops
+-}
 
 -- | Convert a day/leapsecond pair into a compilable string.
 lsToString :: (Day, Integer) -> String
@@ -42,10 +45,12 @@ lsToString (d,s) = formatTime defaultTimeLocale fmt d
 showL :: (a -> String) -> [a] -> String
 showL showf xs = intercalate "\n  : " (map showf xs) ++ "\n  : []"
 
--- | Prints a leapsecond module.
+-- | Compilable leapsecond module.
 showModule :: EOPList a -> String
 showModule eops = unlines
-  [ "{- |"
+  [ "-- This file was automatically generated."
+  , ""
+  , "{- |"
   , "   Copyright  : Copyright (C) 2009 Bjorn Buckwalter"
   , "   License    : BSD3"
   , ""
@@ -58,9 +63,8 @@ showModule eops = unlines
   , "will become invalidated when/if the International Earth Rotation"
   , "and Reference Systems Service (IERS) announces a new leap second at"
   , "<http://hpiers.obspm.fr/eoppc/bul/bulc/bulletinc.dat>."
-  , "At that time a new version of the library will be released and"
-  , "any code wishing to remain up to date should recompile against"
-  , "that version."
+  , "At that time a new version of the library will be released which"
+  , "any code wishing to remain up to date should recompile against."
   , ""
   , "This module is intended to provide a quick-and-dirty leap second solution"
   , "for one-off analyses concerned only with the past and present (i.e. up"
