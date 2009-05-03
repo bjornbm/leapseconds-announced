@@ -1,0 +1,26 @@
+\documentclass{article}
+
+\usepackage{hcar}
+
+\begin{document}
+
+\begin{hcarentry}{leapseconds-announced}
+\report{Bj\"orn Buckwalter}%05/09
+\status{stable, maintained}
+\makeheader
+
+The leapseconds-announced library provides an easy to use static Leap\-Second\-Table with the leap seconds announced at library release time. 
+It is intended as a quick-and-dirty leap second solution for one-off analyses concerned only with the past and present (i.e. up until the next as of yet unannounced leap second), or for applications which can afford to be recompiled against an updated library as often as every six months.
+
+Version 2009 of leapseconds-announced contains all leap seconds up to 2009-01-01. A new version will be uploaded if/when the \textsc{iers} announces a new leap second.
+
+%(CAN OTHERS GET IT?)
+
+%(WHAT ARE THE IMMEDIATE PLANS?)
+
+\FurtherReading
+  \url{http://hackage.haskell.org/cgi-bin/hackage-scripts/package/leapseconds-announced}
+  \url{http://github.com/bjornbm/leapseconds-announced}
+\end{hcarentry}
+
+\end{document}
