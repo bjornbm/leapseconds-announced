@@ -1,7 +1,7 @@
 -- This file was automatically generated.
 
 {- |
-   Copyright  : Copyright (C) 2009 Bjorn Buckwalter
+   Copyright  : Copyright (C) 2009-2012 Bjorn Buckwalter
    License    : BSD3
 
    Maintainer : bjorn.buckwalter@gmail.com
@@ -29,7 +29,8 @@ import Data.Time (Day, fromGregorian)
 import Data.Time.Clock.TAI (LeapSecondTable)
 
 leapSeconds :: [(Day, Integer)]
-leapSeconds = (fromGregorian 2009 01 01, 34)
+leapSeconds = (fromGregorian 2012 07 01, 35)
+  : (fromGregorian 2009 01 01, 34)
   : (fromGregorian 2006 01 01, 33)
   : (fromGregorian 1999 01 01, 32)
   : (fromGregorian 1997 07 01, 31)
@@ -60,7 +61,7 @@ leapSeconds = (fromGregorian 2009 01 01, 34)
   : []
 
 -- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds
--- up to 2009-01-01.
+-- up to 2012-07-01.
 lst :: LeapSecondTable
 lst d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) leapSeconds
   where headDef def xs = if null xs then def else head xs  -- Inspired by Safe.

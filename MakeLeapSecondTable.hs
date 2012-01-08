@@ -51,7 +51,7 @@ showModule eops = unlines
   [ "-- This file was automatically generated."
   , ""
   , "{- |"
-  , "   Copyright  : Copyright (C) 2009 Bjorn Buckwalter"
+  , "   Copyright  : Copyright (C) 2009-2012 Bjorn Buckwalter"
   , "   License    : BSD3"
   , ""
   , "   Maintainer : bjorn.buckwalter@gmail.com"

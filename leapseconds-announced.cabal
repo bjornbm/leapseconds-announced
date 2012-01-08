@@ -1,8 +1,8 @@
 Name:                leapseconds-announced
-Version:             2009
+Version:             2012
 License:             BSD3
 License-File:        LICENSE
-Copyright:           Bjorn Buckwalter 2009-2010
+Copyright:           Bjorn Buckwalter 2009-2012
 Author:              Bjorn Buckwalter 
 Maintainer:          bjorn.buckwalter@gmail.com
 Stability:           Stable
@@ -12,7 +12,7 @@ Description:
     with the leap seconds announced at library release time.
 Category:            System
 Build-Type:          Simple
-Build-Depends:       base < 5, time < 1.3
+Build-Depends:       base, time < 2
 Exposed-Modules:     Data.Time.Clock.AnnouncedLeapSeconds
 Extra-source-files:  TestLeapSeconds.hs
  
