@@ -4,7 +4,7 @@ License:             BSD3
 License-File:        LICENSE
 Copyright:           Bjorn Buckwalter 2009-2015
 Author:              Bjorn Buckwalter 
-Maintainer:          bjorn.buckwalter@gmail.com
+Maintainer:          bjorn@buckwalter.se
 Stability:           Stable
 Synopsis:            Leap seconds announced at library release time.
 Description:
