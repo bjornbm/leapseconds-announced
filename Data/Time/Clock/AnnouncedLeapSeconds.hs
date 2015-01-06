@@ -1,7 +1,7 @@
 -- This file was automatically generated.
 
 {- |
-   Copyright  : Copyright (C) 2009-2012 Bjorn Buckwalter
+   Copyright  : Copyright (C) 2009-2015 Bjorn Buckwalter
    License    : BSD3
 
    Maintainer : bjorn.buckwalter@gmail.com
@@ -29,7 +29,8 @@ import Data.Time (Day, fromGregorian)
 import Data.Time.Clock.TAI (LeapSecondTable)
 
 leapSeconds :: [(Day, Integer)]
-leapSeconds = (fromGregorian 2012 07 01, 35)
+leapSeconds = (fromGregorian 2015 07 01, 36)
+  : (fromGregorian 2012 07 01, 35)
   : (fromGregorian 2009 01 01, 34)
   : (fromGregorian 2006 01 01, 33)
   : (fromGregorian 1999 01 01, 32)
