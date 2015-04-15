@@ -55,14 +55,19 @@ leapSeconds = (fromGregorian 2015 07 01, 36)
   : (fromGregorian 1974 01 01, 13)
   : (fromGregorian 1973 01 01, 12)
   : (fromGregorian 1972 07 01, 11)
-  : (fromGregorian 1972 01 01, 10)
-  : (fromGregorian 1966 01 01, 4)
-  : (fromGregorian 1964 01 01, 3)
-  : (fromGregorian 1962 01 01, 1)
+  : (fromGregorian 1971 08 03, 10)
+  : (fromGregorian 1970 07 13, 9)
+  : (fromGregorian 1969 06 23, 8)
+  : (fromGregorian 1968 06 02, 7)
+  : (fromGregorian 1967 04 04, 6)
+  : (fromGregorian 1966 03 15, 5)
+  : (fromGregorian 1965 01 01, 4)
+  : (fromGregorian 1963 08 07, 3)
+  : (fromGregorian 1962 01 01, 2)
   : []
 
 -- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds
--- up to 2012-07-01.
+-- up to 2015-07-01.
 lst :: LeapSecondTable
 lst d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) leapSeconds
   where headDef def xs = if null xs then def else head xs  -- Inspired by Safe.
