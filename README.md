@@ -5,7 +5,7 @@ This libraray provides a static [`Data.Time.Clock.TAI.LeapSecondTable`][1]
 "containing" the leap seconds announced at library release time.
 A new version of the library is released every time the International
 Earth Rotation and Reference Systems Service (IERS) announces a new
-leap second at [http://hpiers.obspm.fr/eoppc/bul/bulc/bulletinc.dat].
+leap second at http://hpiers.obspm.fr/eoppc/bul/bulc/bulletinc.dat.
 
 This module is intended to provide a quick-and-dirty leap second solution
 for one-off analyses concerned only with the past and present (i.e. up
@@ -20,7 +20,7 @@ Usage
 -----
 
 Import `Data.Time.Clock.AnnouncedLeapSeconds` to bring the leap
-second table `lst` into scope. Here is a usage example.
+second table `lst` into scope. Here is a usage example:
 
 ```haskell
 import Data.Time
