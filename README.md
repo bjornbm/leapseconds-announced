@@ -13,7 +13,7 @@ until the next as of yet unannounced leap second), or for applications
 which can afford to be recompiled against an updated library as often
 as every six months.
 
-[1]: https://hackage.haskell.org/package/time-1.5.0.1/docs/Data-Time-Clock-TAI.html
+[1]: https://hackage.haskell.org/package/time/docs/Data-Time-Clock-TAI.html
 
 
 Usage
