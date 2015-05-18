@@ -2,9 +2,11 @@ import Data.Time
 import Data.Time.Clock.AnnouncedLeapSeconds
 import Test.QuickCheck
 
+onceCheck :: Bool -> IO ()
 onceCheck = quickCheckWith (stdArgs {maxSuccess = 1})
 
 -- A few trivial tests.
+main :: IO ()
 main = do
   onceCheck $ lst (fromGregorian 1111 12 31) ==  0  -- Before first leap second.
   onceCheck $ lst (fromGregorian 2008 12 31) == 33
