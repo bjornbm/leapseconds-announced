@@ -78,19 +78,30 @@ showModule eops = unlines
   , "import Data.Time (Day, fromGregorian)"
   , "import Data.Time.Clock.TAI (LeapSecondTable)"
   , ""
+  , "-- | List of all leap seconds up to 2015-07-01. An"
+  , "-- estimate of hypothetical leap seconds prior to 1972-01-01 is"
+  , "-- included. These can be understood as leap seconds that may have"
+  , "-- been introduced had UTC used the SI second since its inception in 1961."
+  , "-- One should be extremely careful in using this information as it is"
+  , "-- generally not appropriate. One specific case where it may be useful"
+  , "-- is in reducing the error in computed time differences between UTC time"
+  , "-- stamps in the 1961--1971 range from the order of 10 SI seconds to 1 SI"
+  , "-- second."
+  , "pseudoLeapSeconds :: [(Day, Integer)]"
+  , "pseudoLeapSeconds = " ++ showL lsToString ls
+  , ""
+  , "-- | List of all official leap seconds from 1972-01-01 to 2015-07-01."
   , "leapSeconds :: [(Day, Integer)]"
-  , "leapSeconds = " ++ showL lsToString ls
+  , "leapSeconds = takeWhile (> introduction) pseudoLeapSeconds ++ [introduction]"
+  , "  where"
+  , "    introduction = (fromGregorian 1972 01 01, 10)"
   , ""
   , "-- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds"
-  , "-- up to " ++ (show.fst.head) ls ++ "."
+  , "-- from 1972-01-01 to " ++ (show.fst.head) ls ++ "."
   , "lst :: LeapSecondTable"
   , "lst d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) leapSeconds"
   , "  where headDef def xs = if null xs then def else head xs  -- Inspired by Safe."
-  , ""
   ] where ls = eopToLS eops
 
 main = do
   interact (showModule . parseEOPData)
-
-
-
