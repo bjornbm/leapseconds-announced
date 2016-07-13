@@ -28,7 +28,7 @@ module Data.Time.Clock.AnnouncedLeapSeconds (lst) where
 import Data.Time (Day, fromGregorian)
 import Data.Time.Clock.TAI (LeapSecondTable)
 
--- | List of all leap seconds up to 2015-07-01. An
+-- | List of all leap seconds up to 2017-01-01. An
 -- estimate of hypothetical leap seconds prior to 1972-01-01 is
 -- included. These can be understood as leap seconds that may have
 -- been introduced had UTC used the SI second since its inception in 1961.
@@ -38,7 +38,8 @@ import Data.Time.Clock.TAI (LeapSecondTable)
 -- stamps in the 1961--1971 range from the order of 10 SI seconds to 1 SI
 -- second.
 pseudoLeapSeconds :: [(Day, Integer)]
-pseudoLeapSeconds = (fromGregorian 2015 07 01, 36)
+pseudoLeapSeconds = (fromGregorian 2017 01 01, 37)
+  : (fromGregorian 2015 07 01, 36)
   : (fromGregorian 2012 07 01, 35)
   : (fromGregorian 2009 01 01, 34)
   : (fromGregorian 2006 01 01, 33)
