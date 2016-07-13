@@ -1,7 +1,7 @@
 -- This file was automatically generated.
 
 {- |
-   Copyright  : Copyright (C) 2009-2015 Bjorn Buckwalter
+   Copyright  : Copyright (C) 2009-2016 Bjorn Buckwalter
    License    : BSD3
 
    Maintainer : bjorn.buckwalter@gmail.com
@@ -76,14 +76,14 @@ pseudoLeapSeconds = (fromGregorian 2017 01 01, 37)
   : (fromGregorian 1962 01 01, 2)
   : []
 
--- | List of all official leap seconds from 1972-01-01 to 2015-07-01.
+-- | List of all official leap seconds from 1972-01-01 to 2017-01-01.
 leapSeconds :: [(Day, Integer)]
 leapSeconds = takeWhile (> introduction) pseudoLeapSeconds ++ [introduction]
   where
     introduction = (fromGregorian 1972 01 01, 10)
 
 -- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds
--- from 1972-01-01 to 2015-07-01.
+-- from 1972-01-01 to 2017-01-01.
 lst :: LeapSecondTable
 lst d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) leapSeconds
   where headDef def xs = if null xs then def else head xs  -- Inspired by Safe.
