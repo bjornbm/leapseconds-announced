@@ -34,6 +34,6 @@ taiToUTCTime' = taiToUTCTime lst
 
 -- | Add a length of time to a UTC time, respecting leap seconds
 --   (as opposed to Data.Time.Clock.addUTCTime).
-addUTCTime' :: DiffTime -> UTCTime -> UTCTime
-addUTCTime' dt = taiToUTCTime' . addAbsoluteTime dt . utcToTAITime'
+addUTCTime' :: DiffTime -> UTCTime -> Maybe UTCTime
+addUTCTime' dt utc = taiToUTCTime' . addAbsoluteTime dt =<< utcToTAITime' utc
 ```

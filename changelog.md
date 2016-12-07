@@ -1,5 +1,15 @@
-2015.0.1 (2015-05)
-==================
+2017.0.0.1 (2016-12)
+====================
+
+*  Ported leapSecondMap of time-1.7.
+
+2017 (2016-06)
+==============
+
+*  Added 2017 leap second (2016-12-31T23:59:60Z).
+
+2015.0.0.1 (2015-05)
+====================
 
 *  Fix documentation to reflect addition of 2015 leap second.
 *  Hide hypothetical leap seconds (prior to 1972-01-01).

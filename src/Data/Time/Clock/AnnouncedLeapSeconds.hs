@@ -25,8 +25,9 @@ as every six months.
 
 module Data.Time.Clock.AnnouncedLeapSeconds (lst) where
 
+import Data.Maybe (listToMaybe)
 import Data.Time (Day, fromGregorian)
-import Data.Time.Clock.TAI (LeapSecondTable)
+import Data.Time.Clock.TAI (LeapSecondMap)
 
 -- | List of all leap seconds up to 2017-01-01. An
 -- estimate of hypothetical leap seconds prior to 1972-01-01 is
@@ -37,7 +38,7 @@ import Data.Time.Clock.TAI (LeapSecondTable)
 -- is in reducing the error in computed time differences between UTC time
 -- stamps in the 1961--1971 range from the order of 10 SI seconds to 1 SI
 -- second.
-pseudoLeapSeconds :: [(Day, Integer)]
+pseudoLeapSeconds :: [(Day, Int)]
 pseudoLeapSeconds = (fromGregorian 2017 01 01, 37)
   : (fromGregorian 2015 07 01, 36)
   : (fromGregorian 2012 07 01, 35)
@@ -77,13 +78,12 @@ pseudoLeapSeconds = (fromGregorian 2017 01 01, 37)
   : []
 
 -- | List of all official leap seconds from 1972-01-01 to 2017-01-01.
-leapSeconds :: [(Day, Integer)]
+leapSeconds :: [(Day, Int)]
 leapSeconds = takeWhile (> introduction) pseudoLeapSeconds ++ [introduction]
   where
     introduction = (fromGregorian 1972 01 01, 10)
 
 -- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds
 -- from 1972-01-01 to 2017-01-01.
-lst :: LeapSecondTable
-lst d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) leapSeconds
-  where headDef def xs = if null xs then def else head xs  -- Inspired by Safe.
+lst :: LeapSecondMap
+lst d = fmap snd $ listToMaybe $ dropWhile ((>d).fst) leapSeconds

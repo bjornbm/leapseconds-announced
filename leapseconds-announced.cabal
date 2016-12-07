@@ -1,5 +1,5 @@
 name:                leapseconds-announced
-version:             2017
+version:             2017.0.0.1
 license:             BSD3
 license-file:        LICENSE
 copyright:           Bjorn Buckwalter 2009-2016
@@ -23,7 +23,7 @@ source-repository head
   location: https://github.com/bjornbm/leapseconds-announced
 
 library
-  build-depends:       base < 10, time < 2
+  build-depends:       base < 10, time >= 1.7 && < 2
   hs-source-dirs:      src
   default-language:    Haskell98
   ghc-options:         -Wall
