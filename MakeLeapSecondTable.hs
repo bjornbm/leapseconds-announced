@@ -25,7 +25,7 @@ keepInitial :: Eq a => [(b,a)] -> [(b,a)]
 keepInitial (x:xs) = x : keepInitial (dropWhile (sndEq x) xs) where sndEq (_,x) (_,y) = x == y
 keepInitial [] = []
 
-{- 
+{-
 The above and this function are candidates for moving to "Astro.Celestrak":
 
 -- | Converts an 'EOPList' to a light weight 'LeapSecondTable' (its internal
@@ -75,6 +75,7 @@ showModule eops = unlines
   , ""
   , "module Data.Time.Clock.AnnouncedLeapSeconds (lst) where"
   , ""
+  , "import Data.Maybe (listToMaybe)"
   , "import Data.Time (Day, fromGregorian)"
   , "import Data.Time.Clock.TAI (LeapSecondTable)"
   , ""
@@ -87,11 +88,11 @@ showModule eops = unlines
   , "-- is in reducing the error in computed time differences between UTC time"
   , "-- stamps in the 1961--1971 range from the order of 10 SI seconds to 1 SI"
   , "-- second."
-  , "pseudoLeapSeconds :: [(Day, Integer)]"
+  , "pseudoLeapSeconds :: [(Day, Int)]"
   , "pseudoLeapSeconds = " ++ showL lsToString ls
   , ""
   , "-- | List of all official leap seconds from 1972-01-01 to 2015-07-01."
-  , "leapSeconds :: [(Day, Integer)]"
+  , "leapSeconds :: [(Day, Int)]"
   , "leapSeconds = takeWhile (> introduction) pseudoLeapSeconds ++ [introduction]"
   , "  where"
   , "    introduction = (fromGregorian 1972 01 01, 10)"
@@ -99,8 +100,7 @@ showModule eops = unlines
   , "-- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds"
   , "-- from 1972-01-01 to " ++ (show.fst.head) ls ++ "."
   , "lst :: LeapSecondTable"
-  , "lst d = snd $ headDef (undefined,0) $ dropWhile ((>d).fst) leapSeconds"
-  , "  where headDef def xs = if null xs then def else head xs  -- Inspired by Safe."
+  , "lst d = fmap snd $ listToMaybe $ dropWhile ((>d).fst) leapSeconds"
   ] where ls = eopToLS eops
 
 main = do
