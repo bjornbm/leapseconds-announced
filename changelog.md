@@ -1,3 +1,8 @@
+2017.1 (2016-12)
+====================
+
+*  Corrected version numbering to reflect API breaking (2017.0.0.1 deprecated).
+
 2017.0.0.1 (2016-12)
 ====================
 
