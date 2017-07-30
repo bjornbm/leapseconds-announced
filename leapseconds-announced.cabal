@@ -1,5 +1,5 @@
 name:                leapseconds-announced
-version:             2017.1
+version:             2017.1.0.1
 license:             BSD3
 license-file:        LICENSE
 copyright:           Bjorn Buckwalter 2009-2016

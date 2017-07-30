@@ -1,5 +1,10 @@
-2017.1 (2016-12)
+2017.1.0.1 (2017-07)
 ====================
+
+*  Updated tests for 2017.1 and recent years (thank Dan Burton for filing the issue).
+
+2017.1 (2016-12)
+================
 
 *  Corrected version numbering to reflect API breaking (2017.0.0.1 deprecated).
 
