@@ -83,7 +83,7 @@ leapSeconds = takeWhile (> introduction) pseudoLeapSeconds ++ [introduction]
   where
     introduction = (fromGregorian 1972 01 01, 10)
 
--- | 'Data.Time.Clock.TAI.LeapSecondTable' containing all leap seconds
+-- | 'Data.Time.Clock.TAI.LeapSecondMap' containing all leap seconds
 -- from 1972-01-01 to 2017-01-01.
 lst :: LeapSecondMap
 lst d = fmap snd $ listToMaybe $ dropWhile ((>d).fst) leapSeconds
